@@ -1,0 +1,22 @@
+<header [class.scrolled]="isScrolled()">
+  <div class="wrap nav">
+    <ul class="nav-links nav-links-left">
+      <li><a href="#nosotros">Nosotros</a></li>
+      <li><a href="#servicios">Servicios</a></li>
+    </ul>
+
+    <a href="/" class="logo">
+      <img class="logo-desktop" src="/img/fintaxlogo.png" alt="Fintax" />
+      <img class="logo-mobile" src="/img/fintaxlogomovil1.svg" alt="Fintax" />
+    </a>
+
+    <ul class="nav-links nav-links-right">
+      <li><a href="#diferencias">Diferencias</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+
+    <button class="burger" (click)="toggleMobileMenu()" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>

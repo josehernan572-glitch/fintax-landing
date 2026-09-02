@@ -1,0 +1,215 @@
+/* Why Fintax Section */
+.why-section {
+  position: relative;
+  background: #fff;
+  color: var(--navy);
+  overflow: hidden;
+  padding-top: 0;
+}
+
+.why-bg-left,
+.why-bg-right {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: auto;
+  max-width: none;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.why-bg-left {
+  left: 0;
+}
+
+.why-bg-right {
+  right: 0;
+}
+
+.why-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 0.68fr 0.86fr 0.96fr;
+  gap: 32px;
+  align-items: center;
+}
+
+/* Left photo column */
+.why-photo-col {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+  min-height: 560px;
+}
+
+.why-photo-left-wrap {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  /* mirror of .why-photo-right-wrap: bleed from this column's right edge
+     (safe, against the copy text) toward the real left viewport edge */
+  left: min(-32px, calc(558px - 50vw));
+  display: flex;
+  justify-content: flex-end;
+}
+
+.why-photo-left {
+  display: block;
+  height: 131%;
+  width: auto;
+  margin: 0;
+}
+
+.why-photo-left-mobile {
+  display: none;
+}
+
+/* Copy column */
+.why-copy {
+  position: relative;
+  z-index: 2;
+  min-width: 0;
+}
+
+.why-copy h2 {
+  color: var(--navy);
+  font-size: clamp(24px, 2.6vw, 34px);
+  margin-bottom: 16px;
+}
+
+.why-copy .brandmark {
+  font-family: 'Archivo Black', sans-serif;
+  color: var(--navy);
+}
+
+.why-copy > p {
+  color: #4b5165;
+  font-size: 14.5px;
+  line-height: 1.7;
+  margin-bottom: 8px;
+}
+
+.why-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 18px;
+}
+
+.why-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 18px 0;
+}
+
+.why-diamond-num {
+  flex: none;
+  width: 30px;
+  height: 30px;
+  background: var(--orange);
+  transform: rotate(45deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 4px;
+  color: #fff;
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 11px;
+}
+
+.why-diamond-num > span {
+  transform: rotate(-45deg);
+}
+
+.why-item h3 {
+  font-size: 16px;
+  text-transform: none;
+  font-family: 'Archivo', sans-serif;
+  font-weight: 800;
+  color: var(--navy);
+  margin-bottom: 6px;
+}
+
+.why-item h3 .hl {
+  color: var(--orange);
+  font-style: italic;
+}
+
+.why-item p {
+  font-size: 13px;
+  color: #4b5165;
+  line-height: 1.6;
+}
+
+/* Right photo column */
+.why-photo-col-right {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+  align-self: start;
+  min-height: 640px;
+}
+
+.why-photo-right-wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* bleed from this grid column's left edge all the way to the real viewport
+     edge (not just .wrap's right padding). .wrap is border-box, max-width:1180px
+     (padding included), so once the viewport exceeds 1180px the wrap gets
+     centered and this column's own right edge stops tracking the viewport. */
+  right: min(-32px, calc(558px - 50vw));
+}
+
+.why-photo-right {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 24px 50px rgba(15, 27, 61, 0.35));
+}
+
+@media (max-width: 1100px) {
+  .why-grid {
+    grid-template-columns: 1fr 1.3fr;
+  }
+
+  .why-photo-col-right,
+  .why-bg-right {
+    display: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .why-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .why-bg-left {
+    display: none;
+  }
+
+  .why-photo-col {
+    min-height: 360px;
+  }
+
+  .why-photo-left-wrap {
+    justify-content: center;
+    left: 0;
+    right: 0;
+  }
+
+  .why-photo-left-desktop {
+    display: none;
+  }
+
+  .why-photo-left-mobile {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: none;
+    margin: 0;
+  }
+}

@@ -1,0 +1,33 @@
+<section class="section-cream" id="nosotros">
+  <img class="about-shape" src="/img/vector-nosotros.svg" alt="" />
+  <img class="about-diamonds" src="/img/eg-rombos-derecho-nosotros.png" alt="" />
+  <div class="wrap about-grid">
+    <div class="reveal" data-reveal>
+      <div class="eyebrow">Quiénes somos</div>
+      <h2>Un equipo para <span class="hl">simplificar</span> tu camino</h2>
+      <p>Con más de 15 años de experiencia en el área fiscal, contable, administrativa y financiera en Venezuela, hemos liderado proyectos de gran envergadura en outsourcing contable, nómina, administración y estrategias fiscales.</p>
+      <div class="mv-cards">
+        <div class="mv-card mission"><b>Nuestra misión</b>Acercar a las personas una consultoría integral, accesible y de altísima calidad, rediseñando la manera tradicional de gestionar las organizaciones.</div>
+        <div class="mv-card vision"><b>Nuestra visión</b>Ser el puente humano y tecnológico que conecta el talento con el éxito empresarial, estableciendo un nuevo estándar donde la simplicidad y la excelencia van de la mano.</div>
+      </div>
+    </div>
+    <div class="about-photo-col reveal" data-reveal>
+      <div class="about-photo">
+        @for (bg of slideGradients; track $index) {
+          <div class="about-photo-slide" [class.active]="$index === activeSlide()" [style.background]="bg"></div>
+        }
+      </div>
+      <img class="about-corner-triangle" src="/img/elemento-triangulo-verde-nosotros.svg" alt="" />
+      <div class="about-caption">
+        <div class="name">Ronald Delgado</div>
+        <div class="role">CEO Fundador — Fintax</div>
+        <div class="quote">"15 años liderando gestión empresarial"</div>
+      </div>
+      <div class="dots">
+        @for (bg of slideGradients; track $index) {
+          <span [class.active]="$index === activeSlide()" (click)="goTo($index)"></span>
+        }
+      </div>
+    </div>
+  </div>
+</section>

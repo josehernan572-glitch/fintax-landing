@@ -1,0 +1,198 @@
+/* About/Quiénes Somos Section */
+.about-shape {
+  position: absolute;
+  top: -160px;
+  right: 0;
+  bottom: 0;
+  width: auto;
+  max-width: none;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.about-diamonds {
+  position: absolute;
+  top: 28px;
+  left: 0;
+  width: 48px;
+  height: auto;
+  max-width: none;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.about-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 70px;
+  align-items: start;
+}
+
+.about-grid h2 {
+  font-size: clamp(30px, 4vw, 46px);
+  margin-bottom: 24px;
+}
+
+.about-grid h2 .hl {
+  color: var(--orange);
+}
+
+.about-grid p {
+  font-size: 16px;
+  line-height: 1.75;
+  color: #3d4457;
+  max-width: 520px;
+}
+
+.mv-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 34px;
+}
+
+.mv-card {
+  padding: 24px 26px;
+  border-radius: var(--radius);
+  font-size: 14.5px;
+  line-height: 1.6;
+}
+
+.mv-card b {
+  display: block;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+  font-weight: 800;
+}
+
+.mv-card.mission {
+  background: var(--pink-dust);
+  color: #5a2c1f;
+}
+
+.mv-card.vision {
+  background: var(--blue-dust);
+  color: #0c2333;
+}
+
+.about-photo-col {
+  position: relative;
+}
+
+.about-photo {
+  border-radius: 4px;
+  aspect-ratio: 3 / 3.6;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 30px 60px -24px rgba(20, 20, 20, 0.35);
+  clip-path: polygon(16% 0, 100% 0, 100% 100%, 0 100%, 0 22%);
+}
+
+.about-photo-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.about-photo-slide.active {
+  opacity: 1;
+}
+
+.about-photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(200deg, rgba(15, 27, 61, 0.05), rgba(15, 27, 61, 0.5));
+  z-index: 1;
+}
+
+.about-corner-triangle {
+  position: absolute;
+  top: 0;
+  left: -8px;
+  width: 22px;
+  height: auto;
+  max-width: none;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.about-caption {
+  position: absolute;
+  right: -24px;
+  bottom: 34px;
+  background: #fff;
+  padding: 16px 20px;
+  border-radius: var(--radius);
+  box-shadow: 0 16px 36px -16px rgba(0, 0, 0, 0.3);
+  width: 240px;
+  z-index: 2;
+}
+
+.about-caption .name {
+  font-weight: 800;
+  font-size: 14px;
+  color: var(--navy);
+}
+
+.about-caption .role {
+  font-size: 12px;
+  color: var(--orange);
+  font-weight: 700;
+  margin: 2px 0 6px;
+}
+
+.about-caption .quote {
+  font-size: 12px;
+  color: #666;
+  line-height: 1.5;
+}
+
+.dots {
+  display: flex;
+  gap: 7px;
+  margin-top: 22px;
+}
+
+.dots span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #d8cdbd;
+  cursor: pointer;
+}
+
+.dots span.active {
+  background: var(--orange);
+}
+
+@media (max-width: 900px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-shape {
+    display: block;
+    top: 536px;
+  }
+
+  .about-diamonds,
+  .about-corner-triangle {
+    display: none;
+  }
+
+  .about-photo {
+    clip-path: none;
+  }
+
+  .about-caption {
+    position: static;
+    margin-top: 16px;
+    width: 100%;
+  }
+}

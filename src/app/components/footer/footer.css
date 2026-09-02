@@ -1,0 +1,30 @@
+/* Footer */
+footer {
+  background: var(--navy-deep);
+  color: rgba(255, 255, 255, 0.55);
+  padding: 36px 0;
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.footer-inner .logo {
+  font-size: 16px;
+}
+
+.footer-inner .logo .mark {
+  background: var(--orange);
+}
+
+@media (max-width: 900px) {
+  .footer-inner {
+    flex-direction: column;
+    text-align: center;
+  }
+}

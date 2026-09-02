@@ -1,0 +1,146 @@
+/* Services Section */
+.services {
+  background: #104480;
+  overflow: hidden;
+}
+
+.services-diamonds {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 82%;
+  width: auto;
+  max-width: none;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.services-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.services-head .dash {
+  width: 26px;
+  height: 3px;
+  background: var(--orange);
+  margin-bottom: 20px;
+}
+
+.services-head h2 {
+  font-size: clamp(34px, 4.4vw, 52px);
+  line-height: 1.08;
+  margin-bottom: 20px;
+}
+
+.services-head h2 .hl {
+  color: var(--yellow);
+  font-style: italic;
+}
+
+.services-head p {
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 15px;
+  line-height: 1.7;
+  max-width: 320px;
+}
+
+.services-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.service-row {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  align-items: center;
+  gap: 14px;
+}
+
+.service-num {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 32px;
+  color: var(--orange);
+  text-align: right;
+  line-height: 1;
+}
+
+.service-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.06);
+  clip-path: polygon(0 0, 92% 0, 100% 50%, 92% 100%, 0 100%, 6% 50%);
+  padding: 24px 60px 24px 36px;
+  display: grid;
+  grid-template-columns: 220px 1px 1fr;
+  gap: 22px;
+  align-items: center;
+  min-height: 112px;
+}
+
+.service-card-info h3 {
+  font-size: 18px;
+  font-weight: 800;
+  margin-bottom: 6px;
+  margin-left: 20px;
+  text-transform: none;
+  font-family: 'Archivo', sans-serif;
+}
+
+.service-card-info .service-tag {
+  color: var(--yellow);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  margin-left: 20px;
+}
+
+.service-divider {
+  width: 1px;
+  height: 44px;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.service-card p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 13.5px;
+  line-height: 1.65;
+}
+
+@media (max-width: 900px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .services-diamonds {
+    display: none;
+  }
+
+  .services-head p {
+    max-width: 100%;
+  }
+
+  .service-row {
+    grid-template-columns: 1fr;
+  }
+
+  .service-num {
+    text-align: left;
+  }
+
+  .service-card {
+    clip-path: none;
+    grid-template-columns: 1fr;
+    padding: 24px;
+  }
+
+  .service-divider {
+    display: none;
+  }
+}

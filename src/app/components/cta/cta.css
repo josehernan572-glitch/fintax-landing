@@ -1,0 +1,72 @@
+/* CTA Band Section */
+.cta-band {
+  background: var(--orange);
+  text-align: center;
+  padding: 110px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-band::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0.12), transparent 45%);
+}
+
+.cta-pattern {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin-bottom: 0;
+  width: 100%;
+  height: auto;
+  display: block;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.cta-band .wrap {
+  position: relative;
+  z-index: 2;
+}
+
+.cta-band .eyebrow {
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.cta-band .eyebrow::before {
+  background: #fff;
+}
+
+.cta-band h2 {
+  color: #fff;
+  font-size: clamp(30px, 5vw, 54px);
+  margin-bottom: 22px;
+}
+
+.cta-band h2 .it {
+  font-family: 'Archivo', sans-serif;
+  font-style: italic;
+  text-transform: none;
+  color: var(--navy);
+}
+
+.cta-band p {
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 480px;
+  margin: 0 auto 36px;
+  font-size: 16px;
+}
+
+.cta-band .btn-dark {
+  background: var(--navy);
+  color: #fff;
+  border-color: var(--navy);
+}
+
+.cta-band .btn-dark:hover {
+  background: #08103012;
+}
