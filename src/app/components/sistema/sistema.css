@@ -5,7 +5,7 @@
   min-height: 820px;
   display: flex;
   align-items: center;
-  padding: 120px 0;
+  padding: 120px 0 72px;
 }
 
 .sistema-bg-element {
@@ -68,6 +68,14 @@
   font-style: italic;
 }
 
+.clic-cursor {
+  width: 0.5em;
+  height: 0.5em;
+  margin-left: 0.15em;
+  vertical-align: baseline;
+  opacity: 0.85;
+}
+
 .sistema-content p {
   font-size: 15.5px;
   line-height: 1.7;
@@ -101,7 +109,7 @@
   .sistema {
     display: block;
     min-height: auto;
-    padding: 60px 0 70px;
+    padding: 60px 0 42px;
   }
 
   .sistema-diamonds {
@@ -127,6 +135,8 @@
     width: 346px;
     max-width: 86%;
     height: auto;
+    left: 8%;
+    top: -21px;
   }
 
   .sistema-inner {

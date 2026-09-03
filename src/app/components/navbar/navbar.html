@@ -1,8 +1,8 @@
 <header [class.scrolled]="isScrolled()">
   <div class="wrap nav">
     <ul class="nav-links nav-links-left">
-      <li><a href="#nosotros">Nosotros</a></li>
-      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#nosotros" (click)="scrollToSection($event, 'nosotros')">Nosotros</a></li>
+      <li><a href="#servicios" (click)="scrollToSection($event, 'servicios')">Servicios</a></li>
     </ul>
 
     <a href="/" class="logo">
@@ -11,12 +11,22 @@
     </a>
 
     <ul class="nav-links nav-links-right">
-      <li><a href="#diferencias">Diferencias</a></li>
-      <li><a href="#contacto">Contacto</a></li>
+      <li><a href="#diferencias" (click)="scrollToSection($event, 'diferencias')">Diferencias</a></li>
+      <li><a href="#contacto" (click)="scrollToSection($event, 'contacto')">Contacto</a></li>
     </ul>
 
-    <button class="burger" (click)="toggleMobileMenu()" aria-label="Abrir menú">
+    <button class="burger" [class.active]="isMobileMenuOpen()" (click)="toggleMobileMenu()" aria-label="Abrir menú">
       <span></span><span></span><span></span>
     </button>
   </div>
+
+  <div class="mobile-menu-overlay" [class.open]="isMobileMenuOpen()" (click)="closeMobileMenu()"></div>
+  <nav class="mobile-menu" [class.open]="isMobileMenuOpen()">
+    <ul>
+      <li><a href="#nosotros" (click)="scrollToSection($event, 'nosotros')">Nosotros</a></li>
+      <li><a href="#servicios" (click)="scrollToSection($event, 'servicios')">Servicios</a></li>
+      <li><a href="#diferencias" (click)="scrollToSection($event, 'diferencias')">Diferencias</a></li>
+      <li><a href="#contacto" (click)="scrollToSection($event, 'contacto')">Contacto</a></li>
+    </ul>
+  </nav>
 </header>

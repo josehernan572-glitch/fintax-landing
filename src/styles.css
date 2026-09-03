@@ -194,13 +194,7 @@ section {
 /* Responsive */
 @media (max-width: 900px) {
   section {
-    padding: 100px 0 90px;
+    padding: 48px 0 90px;
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .reveal {
-    opacity: 1 !important;
-    transform: none !important;
-  }
-}

@@ -21,13 +21,27 @@
   pointer-events: none;
 }
 
+@media (min-width: 901px) {
+  .about-diamonds {
+    width: 72px;
+  }
+}
+
 .about-grid {
   position: relative;
   z-index: 1;
   display: grid;
   grid-template-columns: 1.05fr 0.95fr;
-  gap: 70px;
+  grid-template-areas:
+    "intro photo"
+    "cards photo";
+  column-gap: 70px;
+  row-gap: 34px;
   align-items: start;
+}
+
+.about-intro {
+  grid-area: intro;
 }
 
 .about-grid h2 {
@@ -37,6 +51,7 @@
 
 .about-grid h2 .hl {
   color: var(--orange);
+  font-style: italic;
 }
 
 .about-grid p {
@@ -47,10 +62,10 @@
 }
 
 .mv-cards {
+  grid-area: cards;
   display: flex;
   flex-direction: column;
   gap: 16px;
-  margin-top: 34px;
 }
 
 .mv-card {
@@ -58,6 +73,12 @@
   border-radius: var(--radius);
   font-size: 14.5px;
   line-height: 1.6;
+  opacity: 0;
+  transform: translateX(-45px);
+}
+
+.mv-card.vision {
+  transform: translateX(45px);
 }
 
 .mv-card b {
@@ -80,6 +101,7 @@
 }
 
 .about-photo-col {
+  grid-area: photo;
   position: relative;
 }
 
@@ -174,6 +196,11 @@
 @media (max-width: 900px) {
   .about-grid {
     grid-template-columns: 1fr;
+    grid-template-areas:
+      "intro"
+      "photo"
+      "cards";
+    row-gap: 28px;
   }
 
   .about-shape {

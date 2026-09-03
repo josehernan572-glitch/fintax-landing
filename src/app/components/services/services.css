@@ -73,7 +73,7 @@
 
 .service-card {
   position: relative;
-  background: rgba(255, 255, 255, 0.06);
+  background: #00326c;
   clip-path: polygon(0 0, 92% 0, 100% 50%, 92% 100%, 0 100%, 6% 50%);
   padding: 24px 60px 24px 36px;
   display: grid;
@@ -104,6 +104,9 @@
   width: 1px;
   height: 44px;
   background: rgba(255, 255, 255, 0.25);
+  opacity: 0;
+  transform: scaleY(0);
+  transform-origin: top;
 }
 
 .service-card p {
@@ -119,7 +122,15 @@
   }
 
   .services-diamonds {
-    display: none;
+    display: block;
+    position: absolute;
+    top: 515px;
+    height: 905px;
+    transform: scaleX(-1);
+    left: auto;
+    right: 0;
+    width: auto;
+    max-width: none;
   }
 
   .services-head p {

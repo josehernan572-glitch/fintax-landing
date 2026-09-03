@@ -1,6 +1,13 @@
 import { Component, OnDestroy, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+interface TeamSlide {
+  bg: string;
+  name: string;
+  role: string;
+  quote: string;
+}
+
 @Component({
   selector: 'app-about',
   imports: [CommonModule],
@@ -8,18 +15,38 @@ import { CommonModule } from '@angular/common';
   styleUrl: './about.css',
 })
 export class About implements OnInit, OnDestroy {
-  slideGradients = [
-    'linear-gradient(135deg, #e9ddd0, #cbb79f)',
-    'linear-gradient(135deg, #d9c9b3, #a98f72)',
-    'linear-gradient(135deg, #ded0ba, #b7a284)',
-    'linear-gradient(135deg, #e2d3bd, #c2ab8c)',
+  slides: TeamSlide[] = [
+    {
+      bg: "url('/img/nosotros1.png') center/cover no-repeat",
+      name: 'Ronald Delgado',
+      role: 'CEO Fundador — Fintax',
+      quote: '"15 años liderando gestión empresarial"',
+    },
+    {
+      bg: "url('/img/nosotros2.png') center/cover no-repeat",
+      name: 'María Torres',
+      role: 'Directora Fiscal — Fintax',
+      quote: '"Simplificamos lo complejo, juntos"',
+    },
+    {
+      bg: "url('/img/nosotros3.png') center/cover no-repeat",
+      name: 'Carlos Pérez',
+      role: 'Director Financiero — Fintax',
+      quote: '"Cercanía y resultados, siempre"',
+    },
+    {
+      bg: "url('/img/nosotros4.png') center/cover no-repeat",
+      name: 'Ana Gómez',
+      role: 'Directora Contable — Fintax',
+      quote: '"Tu éxito es nuestro compromiso"',
+    },
   ];
   activeSlide = signal(0);
   private timer?: ReturnType<typeof setInterval>;
 
   ngOnInit() {
     this.timer = setInterval(() => {
-      this.activeSlide.update((i) => (i + 1) % this.slideGradients.length);
+      this.activeSlide.update((i) => (i + 1) % this.slides.length);
     }, 4500);
   }
 

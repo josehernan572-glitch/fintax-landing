@@ -1,23 +1,32 @@
 <section class="hero">
+  <video class="hero-video hero-video-desktop" [muted]="true" [autoplay]="true" [loop]="true" [playsInline]="true" poster="/img/fintaxhomebackground.jpg">
+    <source src="/img/herovideo1.mp4" type="video/mp4" />
+  </video>
+  <video class="hero-video hero-video-mobile" [muted]="true" [autoplay]="true" [loop]="true" [playsInline]="true" poster="/img/fintaxhomebackground.jpg">
+    <source src="/img/herovideo2.mp4" type="video/mp4" />
+  </video>
   <div class="hero-photo"></div>
-  <img class="hero-shape" src="/img/desktop-16.png" alt="" />
+  <img class="hero-shape hero-shape-desktop" src="/img/elementoherodecorativo.svg" alt="" />
+  <img class="hero-shape hero-shape-mobile" src="/img/desktop-16.png" alt="" />
+  <img class="hero-vector" src="/img/vectorhero.svg" alt="" />
   <div class="promise-badge reveal" data-reveal>
-    <div class="p2">Simple.<span class="dot"></span></div>
+    <div class="p2">Simple.</div>
     <div class="p1">Nuestra promesa en cada proyecto</div>
   </div>
 
   <div class="wrap hero-inner">
     <span class="hero-tag reveal" data-reveal>Consultoría fiscal, contable y financiera</span>
-    <h1 class="reveal" data-reveal>Crecer es el plan,<br><span class="hl">juntos</span> es el camino</h1>
-    <p class="reveal" data-reveal>Porque el verdadero éxito no se logra en solitario. A través de una asesoría integral, cercana y humana, nos sentamos a tu mesa para traducir lo complejo en acciones simples y asegurar el futuro de quienes más te importan.</p>
+    <h1 class="reveal" data-reveal><span class="hero-line">Crecer es el plan,</span><span class="hero-line"><span class="hl">juntos</span> es el camino</span></h1>
+    <p class="reveal" data-reveal>A través de una asesoría integral, cercana y humana, nos convertimos en tu aliado estratégico para traducir lo complejo en acciones simples y asegurar el futuro de lo que más te importan.</p>
     <div class="hero-actions reveal" data-reveal>
-      <a href="#contacto" class="btn btn-primary">Habla con nosotros</a>
-      <a href="#nosotros" class="btn btn-outline">Conócenos ↓</a>
+      <a href="#contacto" class="btn btn-primary" (click)="scrollToSection($event, 'contacto')">Habla con nosotros</a>
+      <a href="#nosotros" class="btn btn-outline" (click)="scrollToSection($event, 'nosotros')">Conócenos ↓</a>
     </div>
   </div>
 
   <div class="hero-stat reveal" data-reveal>
-    <div class="num">15+</div>
+    <div class="num num-desktop"><span class="num-accent">+</span><span class="num-white">15</span></div>
+    <div class="num num-mobile"><span class="num-accent">+</span><span class="num-white">15</span></div>
     <div class="label">Años asesorando empresas en Venezuela</div>
   </div>
 

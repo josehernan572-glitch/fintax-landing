@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
 })
 export class Navbar implements OnInit {
   isScrolled = signal(false);
-  isMobileMenuOpen = false;
+  isMobileMenuOpen = signal(false);
 
   ngOnInit() {
     window.addEventListener('scroll', () => {
@@ -18,6 +18,16 @@ export class Navbar implements OnInit {
   }
 
   toggleMobileMenu() {
-    this.isMobileMenuOpen = !this.isMobileMenuOpen;
+    this.isMobileMenuOpen.update((v) => !v);
+  }
+
+  closeMobileMenu() {
+    this.isMobileMenuOpen.set(false);
+  }
+
+  scrollToSection(event: Event, id: string) {
+    event.preventDefault();
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    this.closeMobileMenu();
   }
 }

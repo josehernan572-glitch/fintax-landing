@@ -14,12 +14,10 @@ footer {
   gap: 12px;
 }
 
-.footer-inner .logo {
-  font-size: 16px;
-}
-
-.footer-inner .logo .mark {
-  background: var(--orange);
+.footer-logo {
+  height: 24px;
+  width: auto;
+  display: block;
 }
 
 @media (max-width: 900px) {

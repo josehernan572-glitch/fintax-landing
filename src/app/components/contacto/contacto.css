@@ -1,5 +1,15 @@
 /* Contacto Section */
+.contacto {
+  background: var(--navy) url('/img/fondo-contactanos-escritorio.svg') no-repeat top center / 100% auto;
+}
+
+.contacto-deco {
+  display: none;
+}
+
 .contacto-grid {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: 0.95fr 1.05fr;
   gap: 70px;
@@ -178,11 +188,30 @@
 }
 
 @media (max-width: 900px) {
+  .contacto {
+    background: var(--navy);
+  }
+
   .contacto-grid {
     grid-template-columns: 1fr;
   }
 
   .contacto-form {
     padding: 32px 24px;
+    position: relative;
+    z-index: 2;
+    background: rgba(8, 18, 42, 0.97);
+  }
+
+  .contacto-deco {
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 130px;
+    height: auto;
+    max-width: none;
+    z-index: 0;
+    pointer-events: none;
   }
 }
