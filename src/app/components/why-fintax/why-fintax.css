@@ -46,6 +46,7 @@
 @media (min-width: 901px) {
   .why-photo-col {
     align-self: start;
+    margin-top: 24px;
   }
 }
 
@@ -77,6 +78,12 @@
   position: relative;
   z-index: 2;
   min-width: 0;
+}
+
+@media (min-width: 901px) {
+  .why-copy {
+    padding-top: 71px;
+  }
 }
 
 .why-copy h2 {
