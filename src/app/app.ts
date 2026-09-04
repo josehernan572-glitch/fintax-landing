@@ -1,5 +1,7 @@
 import { Component, OnDestroy, afterNextRender } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Navbar } from './components/navbar/navbar';
 import { Hero } from './components/hero/hero';
 import { About } from './components/about/about';
@@ -9,9 +11,6 @@ import { WhyFintax } from './components/why-fintax/why-fintax';
 import { Cta } from './components/cta/cta';
 import { Contacto } from './components/contacto/contacto';
 import { Footer } from './components/footer/footer';
-
-declare var gsap: any;
-declare var ScrollTrigger: any;
 
 @Component({
   selector: 'app-root',
@@ -40,28 +39,14 @@ export class App implements OnDestroy {
     // belong to child components still being instantiated.
     afterNextRender(() => {
       this.detectDevice();
-      this.waitForGsapAndInit();
+      this.initAnimations();
       window.addEventListener('resize', () => this.detectDevice());
     });
   }
 
-  private waitForGsapAndInit(attempt = 0): void {
-    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-      this.initAnimations();
-      return;
-    }
-    if (attempt >= 40) {
-      console.warn('GSAP o ScrollTrigger no cargaron a tiempo; animaciones deshabilitadas.');
-      return;
-    }
-    setTimeout(() => this.waitForGsapAndInit(attempt + 1), 100);
-  }
-
   ngOnDestroy() {
     window.removeEventListener('resize', () => this.detectDevice());
-    if (gsap && ScrollTrigger) {
-      ScrollTrigger.getAll().forEach((trigger: any) => trigger.kill());
-    }
+    ScrollTrigger.getAll().forEach((trigger: any) => trigger.kill());
   }
 
   private detectDevice(): void {
@@ -77,12 +62,6 @@ export class App implements OnDestroy {
   }
 
   initAnimations() {
-    // Esperar a que GSAP esté disponible
-    if (!gsap || !ScrollTrigger) {
-      console.warn('GSAP o ScrollTrigger no están disponibles');
-      return;
-    }
-
     gsap.registerPlugin(ScrollTrigger);
 
     // 1. LOGO INTRO - Logo grande centrado que viaja al navbar, luego dispara
@@ -132,32 +111,46 @@ export class App implements OnDestroy {
       return;
     }
 
+    const runIntro = () => {
+      const navRect = navLogo.getBoundingClientRect();
+      const finalCenterX = navRect.left + navRect.width / 2;
+      const finalCenterY = navRect.top + navRect.height / 2;
+      const startCenterX = window.innerWidth / 2;
+      const startCenterY = window.innerHeight / 2;
+      const deltaX = startCenterX - finalCenterX;
+      const deltaY = startCenterY - finalCenterY;
+
+      gsap.set(clone, {
+        left: navRect.left,
+        top: navRect.top,
+        width: navRect.width,
+        height: navRect.height,
+        x: deltaX,
+        y: deltaY,
+        scale: 3,
+        opacity: 0
+      });
+
+      gsap.timeline()
+        .to(clone, { opacity: 1, duration: 0.5, ease: 'back.out(1.6)' }, 0)
+        .to(clone, { x: 0, y: 0, scale: 1, duration: 0.6, ease: 'power3.inOut' }, 1)
+        .call(() => this.animateHeroSection(), [], 1)
+        .set(clone, { opacity: 0 }, 1.6);
+    };
+
+    // On a cold cache (e.g. the first time someone opens the link) the logo
+    // image isn't decoded yet when this runs. Starting the timeline right
+    // away can hide it again (t=1.6s) before the browser ever paints it, so
+    // the whole intro appears to never happen. Wait for the image itself
+    // before animating; on a warm cache it's already complete, so this runs
+    // synchronously and behaves exactly as before.
     clone.src = isDesktop ? '/img/fintaxlogo.png' : '/img/fintaxlogomovil1.svg';
-
-    const navRect = navLogo.getBoundingClientRect();
-    const finalCenterX = navRect.left + navRect.width / 2;
-    const finalCenterY = navRect.top + navRect.height / 2;
-    const startCenterX = window.innerWidth / 2;
-    const startCenterY = window.innerHeight / 2;
-    const deltaX = startCenterX - finalCenterX;
-    const deltaY = startCenterY - finalCenterY;
-
-    gsap.set(clone, {
-      left: navRect.left,
-      top: navRect.top,
-      width: navRect.width,
-      height: navRect.height,
-      x: deltaX,
-      y: deltaY,
-      scale: 3,
-      opacity: 0
-    });
-
-    gsap.timeline()
-      .to(clone, { opacity: 1, duration: 0.5, ease: 'back.out(1.6)' }, 0)
-      .to(clone, { x: 0, y: 0, scale: 1, duration: 0.6, ease: 'power3.inOut' }, 1)
-      .call(() => this.animateHeroSection(), [], 1)
-      .set(clone, { opacity: 0 }, 1.6);
+    if (clone.complete && clone.naturalWidth > 0) {
+      runIntro();
+    } else {
+      clone.addEventListener('load', runIntro, { once: true });
+      clone.addEventListener('error', () => this.animateHeroSection(), { once: true });
+    }
   }
 
   private animateHeroSection(): void {
