@@ -198,6 +198,13 @@
   }
 }
 
+/* Tablet only (901–1180px): left photo 20% smaller than the base 131%. */
+@media (min-width: 901px) and (max-width: 1180px) {
+  .why-photo-left {
+    height: 104.8%;
+  }
+}
+
 @media (max-width: 900px) {
   .why-grid {
     grid-template-columns: 1fr;

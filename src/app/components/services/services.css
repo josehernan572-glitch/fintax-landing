@@ -155,3 +155,25 @@
     display: none;
   }
 }
+
+/* Tablet only (901–1180px): stack the "Nuestros Servicios" heading above the
+   4 service cards instead of running them side by side. */
+@media (min-width: 901px) and (max-width: 1180px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .services-head {
+    padding: 0 18% 0 90px;
+  }
+
+  .services-head p {
+    max-width: 100%;
+  }
+
+  /* Align the 01–04 numbers with the heading's left margin above. */
+  .services-list {
+    padding-left: 90px;
+  }
+}

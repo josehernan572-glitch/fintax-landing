@@ -1,4 +1,17 @@
 /* About/Quiénes Somos Section */
+#nosotros {
+  /* .about-shape deliberately bleeds upward (negative top offset) into the
+     Hero section above to form the rounded orange tab behind its "Simple."
+     badge — only clip the X axis (which was overflowing the page width),
+     not Y, or that bleed gets cut off too. `clip` (unlike `hidden`) keeps
+     the axes independent instead of forcing the other to `auto`. */
+  overflow-x: clip;
+  overflow-y: visible;
+  /* Tighten the gap to the Sistema section below at every width (see
+     sistema.css for the matching top-padding reduction on that side). */
+  padding-bottom: 60px;
+}
+
 .about-shape {
   position: absolute;
   top: -160px;
@@ -75,29 +88,93 @@
   line-height: 1.6;
   opacity: 0;
   transform: translateX(-45px);
+  box-shadow: 0 16px 32px -20px rgba(15, 27, 61, 0.35);
 }
 
 .mv-card.vision {
   transform: translateX(45px);
 }
 
+/* .about-grid p sets a dark body-text color for the section generally;
+   it's more specific than the color inherited from .mv-card, so it wins
+   and leaves this paragraph unreadable on the navy background. Override
+   explicitly. */
+.mv-card p {
+  color: inherit;
+}
+
+.mv-card-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.mv-icon {
+  flex: none;
+  display: flex;
+}
+
+.mv-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
 .mv-card b {
-  display: block;
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  margin-bottom: 8px;
   font-weight: 800;
 }
 
 .mv-card.mission {
-  background: var(--pink-dust);
-  color: #5a2c1f;
+  background: var(--navy);
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.mv-card.mission .mv-icon {
+  color: #EE5C38;
 }
 
 .mv-card.vision {
-  background: var(--blue-dust);
-  color: #0c2333;
+  background: var(--navy-deep);
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.mv-card.vision .mv-icon {
+  color: var(--yellow);
+}
+
+/* Desktop only (≥1181px): mission/vision side by side instead of stacked.
+   That column is narrow (it shares the row with the intro text, not the
+   full section width), so type/padding shrink to fit two cards without
+   wrapping awkwardly. Tablet keeps them stacked (see about-grid above). */
+@media (min-width: 1181px) {
+  .mv-cards {
+    flex-direction: row;
+    gap: 14px;
+  }
+
+  .mv-card {
+    flex: 1;
+    padding: 18px 16px;
+    font-size: 12.5px;
+    line-height: 1.5;
+  }
+
+  .mv-icon svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .mv-card b {
+    font-size: 11px;
+  }
+
+  .mv-card-head {
+    gap: 8px;
+    margin-bottom: 8px;
+  }
 }
 
 .about-photo-col {
@@ -105,9 +182,19 @@
   position: relative;
 }
 
+@media (min-width: 901px) {
+  /* The photo is taller than the combined intro + mv-cards column, so it
+     can't be centered by giving it slack to sit within (there isn't any) —
+     nudge it down directly instead, so it doesn't sit perfectly flush with
+     the intro text at the top. */
+  .about-photo-col {
+    margin-top: 40px;
+  }
+}
+
 .about-photo {
   border-radius: 4px;
-  aspect-ratio: 3 / 3.6;
+  aspect-ratio: 3 / 4.3;
   position: relative;
   overflow: hidden;
   box-shadow: 0 30px 60px -24px rgba(20, 20, 20, 0.35);
@@ -177,20 +264,33 @@
 
 .dots {
   display: flex;
-  gap: 7px;
-  margin-top: 22px;
+  align-items: center;
+  gap: 8px;
+  margin-top: 24px;
 }
 
 .dots span {
-  width: 7px;
-  height: 7px;
+  width: 9px;
+  height: 9px;
   border-radius: 50%;
   background: #d8cdbd;
   cursor: pointer;
+  transition: width 0.25s ease, background 0.25s ease, opacity 0.2s ease;
+}
+
+.dots span:hover {
+  background: var(--navy);
+  opacity: 0.55;
 }
 
 .dots span.active {
-  background: var(--orange);
+  width: 28px;
+  border-radius: 5px;
+  background: var(--navy);
+}
+
+.dots span.active:hover {
+  opacity: 1;
 }
 
 @media (max-width: 900px) {
@@ -221,5 +321,58 @@
     position: static;
     margin-top: 16px;
     width: 100%;
+  }
+}
+
+/* Tablet only (901–1180px): shift the background shape right and drop the
+   diamonds decoration. */
+@media (min-width: 901px) and (max-width: 1180px) {
+  /* Mission/vision cards sit in the left column (stacked, under the intro
+     text), with the photo to their right spanning both rows — same shape
+     as the desktop base layout. */
+  .about-grid {
+    grid-template-columns: 1.05fr 0.95fr;
+    grid-template-areas:
+      "intro photo"
+      "cards photo";
+    row-gap: 28px;
+  }
+
+  .about-intro {
+    margin-top: 32px;
+  }
+
+  /* Raised 15% (of the base -160px) from the flush top:0 below. .about-shape
+     is sized by its own intrinsic ratio (not stretched to the top/bottom
+     span — `bottom:0` is actually ignored, being over-constrained along
+     with `top` and the implicit height), so it naturally extends well past
+     the section's bottom edge and visually continues into Sistema below —
+     that's intentional and was always the case. Clipping #nosotros's Y
+     overflow to stop this -24px top offset from poking into the Hero
+     section above would cut that bottom continuation too, so clip only the
+     image's own top edge instead via clip-path (section stays
+     overflow-y:visible, set in the base rule above). */
+  .about-shape {
+    top: -24px;
+    transform: translateX(20%);
+    clip-path: inset(24px 0 0 0);
+  }
+
+  .about-diamonds {
+    display: none;
+  }
+
+  .about-caption {
+    bottom: 14px;
+  }
+}
+
+/* Desktop only (≥1181px): how far .about-shape bleeds up into the Hero
+   section above. Base -160px, lowered 15% to -136px, raised 5% to -143px,
+   then raised another 5% to -150px. */
+@media (min-width: 1181px) {
+  .about-shape {
+    top: -150px;
+    transform: translateX(0.5%);
   }
 }

@@ -1,6 +1,10 @@
 /* Contacto Section */
 .contacto {
   background: var(--navy) url('/img/fondo-contactanos-escritorio.svg') no-repeat top center / 100% auto;
+  /* Same reasoning as #nosotros — clip only X so nothing that intentionally
+     bleeds vertically into/out of this section gets cut off too. */
+  overflow-x: clip;
+  overflow-y: visible;
 }
 
 .contacto-deco {
@@ -187,7 +191,7 @@
   margin-top: 16px;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1180px) {
   .contacto {
     background: var(--navy);
   }
@@ -213,5 +217,17 @@
     max-width: none;
     z-index: 0;
     pointer-events: none;
+  }
+}
+
+/* Tablet only (901–1180px): the single-column stack (inherited from the
+   max-width:1180px block above) leaves .contacto-info's capped-width text
+   stranded in a half-empty row at this width. Go back to the desktop's
+   2-column layout — the background collision that forced the stack was
+   fixed by the solid navy background above, not by the column count. */
+@media (min-width: 901px) and (max-width: 1180px) {
+  .contacto-grid {
+    grid-template-columns: 0.95fr 1.05fr;
+    gap: 40px;
   }
 }

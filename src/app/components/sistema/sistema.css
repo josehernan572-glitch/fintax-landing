@@ -5,7 +5,10 @@
   min-height: 820px;
   display: flex;
   align-items: center;
-  padding: 120px 0 72px;
+  /* Top padding tightened (was 120px) to close the gap with Quiénes Somos
+     above at every width — see about.css's matching #nosotros
+     padding-bottom. */
+  padding: 60px 0 72px;
 }
 
 .sistema-bg-element {
@@ -145,5 +148,19 @@
 
   .sistema-content {
     max-width: 100%;
+  }
+}
+
+/* Tablet only (901–1180px): shift the photo left and drop the diamonds
+   decoration. */
+@media (min-width: 901px) and (max-width: 1180px) {
+  .sistema-photo {
+    left: 2%;
+    /* 20% smaller than the desktop size (min(68vh, 660px)). */
+    height: min(54.4vh, 528px);
+  }
+
+  .sistema-diamonds {
+    display: none;
   }
 }

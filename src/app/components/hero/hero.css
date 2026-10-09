@@ -202,13 +202,28 @@
   .hero h1 {
     max-width: 920px;
   }
+}
 
+@media (min-width: 1181px) {
   /* elementoherodecorativo.svg (hero-shape-desktop) adds a white curve behind
      .hero-stat, unlike the old desktop-16.png — switch the stat to a dark
      color here so it stays legible against it. */
   .hero-stat .num-white,
   .hero-stat .label {
     color: var(--navy);
+  }
+
+  /* The white curve comes from .hero-shape-desktop, sized via height:100%
+     of the hero — so its on-screen width scales with the hero's height,
+     not the viewport width. .hero-stat used fixed px offsets (135px/46px),
+     which don't scale the same way: at a shorter effective viewport height
+     (e.g. zoomed in, where 100vh is fewer CSS px) the curve shrinks but
+     the text doesn't move, so it can drift off the white area. Using vh
+     for the offset keeps both in lockstep (135px/46px at a 900px-tall
+     reference viewport = 15vh/5.11vh). */
+  .hero-stat {
+    left: 15vh;
+    bottom: 5.11vh;
   }
 }
 
@@ -246,7 +261,7 @@
   gap: 10px;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1180px) {
   .hero-video {
     object-position: right center;
   }
@@ -337,5 +352,28 @@
 
   .promise-badge .p1 {
     font-size: 11px;
+  }
+}
+
+/* Tablet only (901–1180px): center the title block vertically in the hero
+   instead of anchoring it to the bottom. Placed after the max-width:1180px
+   block above so these overrides actually win the cascade in the 901–1180
+   overlap (same-specificity selectors, source order decides). */
+@media (min-width: 901px) and (max-width: 1180px) {
+  .hero {
+    align-items: center;
+  }
+
+  /* .hero-vector is GSAP-animated (x), which overwrites any CSS `transform`
+     via inline style once it runs — shift it with `right` instead, which
+     GSAP doesn't touch, so the 20% offset actually sticks after the intro. */
+  .hero-vector {
+    right: -20%;
+  }
+
+  /* .hero-shape is also GSAP-animated (x) — same reasoning, shift with
+     `left` instead of `transform`. */
+  .hero-shape {
+    left: calc(-295px - 20%);
   }
 }

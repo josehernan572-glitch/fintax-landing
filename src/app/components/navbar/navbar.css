@@ -215,3 +215,21 @@ header.scrolled .logo img {
     letter-spacing: 0.02em;
   }
 }
+
+/* Real tablets in portrait (e.g. iPad ~768-834px) fall inside the ≤900px
+   mobile tier above and get its left-aligned logo + hamburger layout.
+   Center the logo at this width range only — narrower phones keep the
+   original left-aligned logo untouched. Placed after the ≤900px block so
+   it wins the cascade where both match. */
+@media (min-width: 600px) and (max-width: 900px) {
+  .nav {
+    position: relative;
+    justify-content: flex-end;
+  }
+
+  .logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
